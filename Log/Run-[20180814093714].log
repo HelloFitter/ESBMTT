@@ -1,0 +1,882 @@
+------------------2018/8/14 9:37:14---------------------
+=============================================================
+︻┳═一 2018/8/14 9:37:14--->Author : wangxingyang
+︻┳═一 2018/8/14 9:37:14--->Date : 2018/04/13
+︻┳═一 2018/8/14 9:37:14--->Contact : wangxyao@dcits.com
+=============================================================
+2018/8/14 9:37:14--->Version : v1.0 At 2018/04/13
+2018/8/14 9:37:14--->1、 检查交易是否为新增
+2018/8/14 9:37:14--->2、 导出并只执行脚本
+2018/8/14 9:37:14--->3、 导出相关配置文件
+2018/8/14 9:37:14--->4、 修改公共文件结构
+2018/8/14 9:37:14--->Version : v2.0 At 2018/04/16
+2018/8/14 9:37:14--->1、 增加解压文件功能
+2018/8/14 9:37:14--->2、 增加比较元数据功能
+2018/8/14 9:37:14--->3、 增加拷贝至配置库功能
+2018/8/14 9:37:14--->Version : v2.1 At 2018/05/04
+2018/8/14 9:37:14--->1、 修改弹出框BUG[弹出框有长度限制，导致处理交易报错]
+2018/8/14 9:37:14--->2、 修改文件系统名称小写问题
+2018/8/14 9:37:14--->Version : v2.2 At 2018/05/06
+2018/8/14 9:37:14--->1、 增加交易执行判断日志
+2018/8/14 9:37:14--->2、 增加读文件进行处理交易
+2018/8/14 9:37:14--->Version : v2.3 At 2018/05/10
+2018/8/14 9:37:14--->1、 修改元数据检查不出新增的BUG
+2018/8/14 9:37:14--->2、 修改重复添加元数据BUG
+2018/8/14 9:37:14--->Version : v2.4 At 2018/05/14
+2018/8/14 9:37:14--->1、 修改当元数据中包含元数据时不能添加的问题
+2018/8/14 9:37:14--->2、 新增修改元数据文件功能
+2018/8/14 9:37:14--->Version : v2.5 At 2018/05/15
+2018/8/14 9:37:14--->1、 增加文件比对功能，使用BCompare打开需要比较的工具
+2018/8/14 9:37:14--->2、 服务定义文件中，不存在的调用关系会新增
+2018/8/14 9:37:14--->Version : v2.6 At 2018/05/17
+2018/8/14 9:37:14--->1、 新增根据交易类型判断是否跑库
+2018/8/14 9:37:14--->2、 添加交易简称查询缓存，在一次运行中相同名称值检查一次
+2018/8/14 9:37:14--->3、 新增渠道会自动新增服务识别并跑新增脚本
+2018/8/14 9:37:14--->Version : v2.7 At 2018/05/13
+2018/8/14 9:37:14--->1、 新增根据模板替换拆组报文件功能
+2018/8/14 9:37:14--->2、 新增拼接更新适配器SQL功能
+2018/8/14 9:37:14--->Version : v2.8 At 2018/05/30
+2018/8/14 9:37:14--->1、 新增选择执行指定流程
+2018/8/14 9:37:14--->2、 优化路径，尽量少更改路径
+2018/8/14 9:37:14--->Version : v2.9 At 2018/06/12
+2018/8/14 9:37:14--->1、 修改元数据少添加的BUG
+------------------2018/8/14 9:37:14---------------------
+
+
+2018/8/14 9:37:39--->登录服务治理成功
+2018/8/14 9:37:39--->开始加载最新Metadata.xml文件...
+2018/8/14 9:37:47--->加载最新Metadata.xml完成...
+2018/8/14 9:38:08--->开始查看[2001400000105]是否是全新交易
+2018/8/14 9:38:11--->查询结果如下:
+2018/8/14 9:38:11--->
+SQL*Plus: Release 11.2.0.1.0 Production on Tue Aug 14 09:38:11 2018
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+old   3:  WHERE   SERVICEID = '&1'
+new   3:  WHERE   SERVICEID = '2001400000105'
+
+no rows selected
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+2018/8/14 9:38:11--->交易[2001400000105]为全新交易!!!
+2018/8/14 9:38:11--->字典中未缓存，需要查库
+2018/8/14 9:38:11--->查看[2001400000105]是否是全新交易结束
+2018/8/14 9:38:11--->开始导出[2001400000105]SQL脚本
+2018/8/14 9:38:12--->导出[2001400000105]SQL脚本完成
+2018/8/14 9:38:12--->导出内容如下：
+2018/8/14 9:38:12---> 
+----------2001400000105
+insert into SERVICES(NAME, INADDRESSID, OUTADDRESSID, TYPE, SESSIONCOUNT, DELIVERYMODE, NODEID, LOCATION, ROUTERABLE) VALUES('2001400000105', '4cc95abd8b9cba4705f290b39dee3d6a', '70022232c41f240289cac75d5b3e3884', 'SERVICE', 1, '2', null , 'local_out', '1');
+insert into BUSSSERVICES(SERVICEID, CATEGORY, METHODNAME, ISARG, DESCRIPTION) VALUES('2001400000105', null, null, 'false', null);
+insert into SERVICEINFO(SERVICEID, SERVICETYPE, CONTRIBUTION, PREPARED, GROUPNAME, LOCATION, DESCRIPTION, MODIFYTIME, ADAPTERTYPE, ISCREATE) VALUES('2001400000105', 'BUSS', '2001400000105', 'false', null, 'local_out', null, '2018-08-14 09:27:58', null, 'true');
+insert into BINDMAP(SERVICEID, STYPE, LOCATION, VERSION, PROTOCOLID, MAPTYPE) VALUES('2001400000105', 'SERVICE', 'local_out', '0', 'EBANKAdapter', 'request');
+insert into DATAADAPTER(DATAADAPTERID, DATAADAPTER, LOCATION, ADAPTERTYPE) VALUES('2001400000105', 'default_service', 'local_out', 'OUT');
+insert into SERVICESYSTEMMAP(NAME, SERVICEID, ADAPTER) VALUES('EBANK', '2001400000105', 'EBANKAdapter');
+insert into DEPLOYMENTS(ID, LOCATION, FILEPATH, DEPLOYDATE, DESCRIPTION, NAME, FILECONTENT, USERNAME, VERSION) VALUES('1534210078884', 'local_out', null, '2018-08-14 09:27:58', null, '2001400000105', null, null, '0');
+commit;
+----------2001400000105
+insert into SERVICES(NAME, INADDRESSID, OUTADDRESSID, TYPE, SESSIONCOUNT, DELIVERYMODE, NODEID, LOCATION, ROUTERABLE) VALUES('2001400000105', '4cc95abd8b9cba4705f290b39dee3d6a', '70022232c41f240289cac75d5b3e3884', 'SERVICE', 1, '2', null , 'local_out', '1');
+insert into BUSSSERVICES(SERVICEID, CATEGORY, METHODNAME, ISARG, DESCRIPTION) VALUES('2001400000105', null, null, 'false', null);
+insert into SERVICEINFO(SERVICEID, SERVICETYPE, CONTRIBUTION, PREPARED, GROUPNAME, LOCATION, DESCRIPTION, MODIFYTIME, ADAPTERTYPE, ISCREATE) VALUES('2001400000105', 'BUSS', '2001400000105', 'false', null, 'local_out', null, '2018-08-14 09:27:58', null, 'true');
+insert into BINDMAP(SERVICEID, STYPE, LOCATION, VERSION, PROTOCOLID, MAPTYPE) VALUES('2001400000105', 'SERVICE', 'local_out', '0', 'EBANKAdapter', 'request');
+insert into DATAADAPTER(DATAADAPTERID, DATAADAPTER, LOCATION, ADAPTERTYPE) VALUES('2001400000105', 'default_service', 'local_out', 'OUT');
+insert into SERVICESYSTEMMAP(NAME, SERVICEID, ADAPTER) VALUES('EBANK', '2001400000105', 'EBANKAdapter');
+insert into DEPLOYMENTS(ID, LOCATION, FILEPATH, DEPLOYDATE, DESCRIPTION, NAME, FILECONTENT, USERNAME, VERSION) VALUES('1534210078884', 'local_out', null, '2018-08-14 09:27:58', null, '2001400000105', null, null, '0');
+exit;
+2018/8/14 9:38:12--->在[ESBDATA/esbdata@159.1.33.210:1521/esbprd]开始执行导出脚本 SQLScript\2001400000105.sql
+2018/8/14 9:38:12--->拼接更新适配器语句开始...................
+
+UPDATE SERVICESYSTEMMAP SET ADAPTER = '2001400000105Adapter' WHERE SERVICEID = '2001400000105';
+UPDATE BINDMAP SET PROTOCOLID = '2001400000105Adapter' WHERE SERVICEID = '2001400000105';
+
+2018/8/14 9:38:12--->拼接更新适配器语句结束...................
+
+2018/8/14 9:38:12--->执行结果：
+2018/8/14 9:38:12-----------------------------------------------------------
+
+SQL*Plus: Release 11.2.0.1.0 Production on Tue Aug 14 09:38:12 2018
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+2018/8/14 9:38:12-----------------------------------------------------------
+2018/8/14 9:38:12--->导出脚本执行结束 SQLScript\2001400000105.sql
+2018/8/14 9:38:12--->在[ESBDATA/esbdata@159.1.39.130:1521/esbprd]开始执行导出脚本 SQLScript\2001400000105.sql
+2018/8/14 9:38:12--->执行结果：
+2018/8/14 9:38:12-----------------------------------------------------------
+
+SQL*Plus: Release 11.2.0.1.0 Production on Tue Aug 14 09:38:12 2018
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+2018/8/14 9:38:12-----------------------------------------------------------
+2018/8/14 9:38:12--->导出脚本执行结束 SQLScript\2001400000105.sql
+2018/8/14 9:38:12--->准备导出配置文件
+2018/8/14 9:38:12--->查询导出配置文件所需参数
+2018/8/14 9:38:13--->查询导出配置文件所需参数如下:
+2018/8/14 9:38:13--->
+SQL*Plus: Release 11.2.0.1.0 Production on Tue Aug 14 09:38:13 2018
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+old  12:		       WHERE	   A.SERVICE_ID = '&1'
+new  12:		       WHERE	   A.SERVICE_ID = '20014000001'
+old  13:			       AND A.OPERATION_ID = '&2'
+new  13:			       AND A.OPERATION_ID = '05'
+old  14:			       AND UPPER (C.SYSTEM_AB) = UPPER ('&4'))
+new  14:			       AND UPPER (C.SYSTEM_AB) = UPPER ('EBANK'))
+old  19:			      AND N.SYSTEM_CHINESE_NAME LIKE '%&3%')
+new  19:			      AND N.SYSTEM_CHINESE_NAME LIKE '%业务集成平台%')
+old  31:			      AND N.SYSTEM_CHINESE_NAME LIKE '%&3%')
+new  31:			      AND N.SYSTEM_CHINESE_NAME LIKE '%业务集成平台%')
+old  52:				   WHERE   A.SYSTEM_AB = '&4'),
+new  52:				   WHERE   A.SYSTEM_AB = 'EBANK'),
+
+CONSUMER_INVOKE_ID
+--------------------------------------------------------------------------------
+CONSUMER_PROTOCOL_ID
+--------------------------------------------------------------------------------
+PROVIDER_INVOKE_ID
+--------------------------------------------------------------------------------
+PROVIDER_PROTOCOL_ID
+--------------------------------------------------------------------------------
+1f81c115635c53c901653221734b23bf
+1
+1f81c115635c53c9016513b2d59610e4
+b5b8eecd-eb31-4aaf-9d8b-33b31a249bbf
+
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+2018/8/14 9:38:13--->开始导出[2001400000105]配置文件
+2018/8/14 9:38:18--->导出[2001400000105]配置文件完成
+2018/8/14 9:38:18--->开始修改公共文件
+2018/8/14 9:38:18--->开始查询[业务集成平台]对应的简称
+2018/8/14 9:38:18--->字典中已缓存，直接取缓存
+2018/8/14 9:38:18--->[业务集成平台]===>[BIP]
+2018/8/14 9:38:18--->查询[业务集成平台]对应的简称结束
+2018/8/14 9:38:18--->开始修改[Tmp\serviceIdentify.xml]文件
+2018/8/14 9:38:19---> 在注释处插入该交易 BIP --> 2001400000105 --> EBANK
+2018/8/14 9:38:19--->修改[Tmp\serviceIdentify.xml]文件结束
+2018/8/14 9:38:19--->开始修改[Tmp\systemIdentify.xml]文件
+2018/8/14 9:38:19BIP --> 2001400000105 --> EBANK
+2018/8/14 9:38:19--->修改[Tmp\systemIdentify.xml]文件结束
+2018/8/14 9:38:19--->修改公共文件结束
+2018/8/14 9:38:19--->开始比较[2001400000105]与元数据的差异
+2018/8/14 9:38:19--->完成比较[2001400000105]与元数据的差异
+2018/8/14 9:38:19--->开始拷贝文件至SVN[2001400000105]
+2018/8/14 9:38:19--->开始拷贝文件夹-->[C:\Users\srxhx255\Desktop\交易制作工具\Metadata\2001400000105-metadata\in_config\BIP]
+2018/8/14 9:38:19--->开始拷贝文件夹-->[C:\Users\srxhx255\Desktop\交易制作工具\Metadata\2001400000105-metadata\in_config\servicedefine]
+2018/8/14 9:38:19--->开始拷贝文件夹-->[C:\Users\srxhx255\Desktop\交易制作工具\Metadata\2001400000105-metadata\out_config\]
+2018/8/14 9:38:19--->开始修改拆组包文件[2001400000105]
+2018/8/14 9:38:19--->没有模版文件[2001400000105]
+2018/8/14 9:38:19--->开始查看[2001200000813]是否是全新交易
+2018/8/14 9:38:19--->查询结果如下:
+2018/8/14 9:38:19--->
+SQL*Plus: Release 11.2.0.1.0 Production on Tue Aug 14 09:38:19 2018
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+old   3:  WHERE   SERVICEID = '&1'
+new   3:  WHERE   SERVICEID = '2001200000813'
+
+no rows selected
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+2018/8/14 9:38:19--->交易[2001200000813]为全新交易!!!
+2018/8/14 9:38:19--->字典中已缓存，直接取缓存
+2018/8/14 9:38:19--->查看[2001200000813]是否是全新交易结束
+2018/8/14 9:38:19--->开始导出[2001200000813]SQL脚本
+2018/8/14 9:38:19--->导出[2001200000813]SQL脚本完成
+2018/8/14 9:38:19--->导出内容如下：
+2018/8/14 9:38:19---> 
+----------2001200000813
+insert into SERVICES(NAME, INADDRESSID, OUTADDRESSID, TYPE, SESSIONCOUNT, DELIVERYMODE, NODEID, LOCATION, ROUTERABLE) VALUES('2001200000813', '4cc95abd8b9cba4705f290b39dee3d6a', '70022232c41f240289cac75d5b3e3884', 'SERVICE', 1, '2', null , 'local_out', '1');
+insert into BUSSSERVICES(SERVICEID, CATEGORY, METHODNAME, ISARG, DESCRIPTION) VALUES('2001200000813', null, null, 'false', null);
+insert into SERVICEINFO(SERVICEID, SERVICETYPE, CONTRIBUTION, PREPARED, GROUPNAME, LOCATION, DESCRIPTION, MODIFYTIME, ADAPTERTYPE, ISCREATE) VALUES('2001200000813', 'BUSS', '2001200000813', 'false', null, 'local_out', null, '2018-08-14 09:28:06', null, 'true');
+insert into BINDMAP(SERVICEID, STYPE, LOCATION, VERSION, PROTOCOLID, MAPTYPE) VALUES('2001200000813', 'SERVICE', 'local_out', '0', 'EBANKAdapter', 'request');
+insert into DATAADAPTER(DATAADAPTERID, DATAADAPTER, LOCATION, ADAPTERTYPE) VALUES('2001200000813', 'default_service', 'local_out', 'OUT');
+insert into SERVICESYSTEMMAP(NAME, SERVICEID, ADAPTER) VALUES('EBANK', '2001200000813', 'EBANKAdapter');
+insert into DEPLOYMENTS(ID, LOCATION, FILEPATH, DEPLOYDATE, DESCRIPTION, NAME, FILECONTENT, USERNAME, VERSION) VALUES('1534210086614', 'local_out', null, '2018-08-14 09:28:06', null, '2001200000813', null, null, '0');
+commit;
+----------2001200000813
+insert into SERVICES(NAME, INADDRESSID, OUTADDRESSID, TYPE, SESSIONCOUNT, DELIVERYMODE, NODEID, LOCATION, ROUTERABLE) VALUES('2001200000813', '4cc95abd8b9cba4705f290b39dee3d6a', '70022232c41f240289cac75d5b3e3884', 'SERVICE', 1, '2', null , 'local_out', '1');
+insert into BUSSSERVICES(SERVICEID, CATEGORY, METHODNAME, ISARG, DESCRIPTION) VALUES('2001200000813', null, null, 'false', null);
+insert into SERVICEINFO(SERVICEID, SERVICETYPE, CONTRIBUTION, PREPARED, GROUPNAME, LOCATION, DESCRIPTION, MODIFYTIME, ADAPTERTYPE, ISCREATE) VALUES('2001200000813', 'BUSS', '2001200000813', 'false', null, 'local_out', null, '2018-08-14 09:28:06', null, 'true');
+insert into BINDMAP(SERVICEID, STYPE, LOCATION, VERSION, PROTOCOLID, MAPTYPE) VALUES('2001200000813', 'SERVICE', 'local_out', '0', 'EBANKAdapter', 'request');
+insert into DATAADAPTER(DATAADAPTERID, DATAADAPTER, LOCATION, ADAPTERTYPE) VALUES('2001200000813', 'default_service', 'local_out', 'OUT');
+insert into SERVICESYSTEMMAP(NAME, SERVICEID, ADAPTER) VALUES('EBANK', '2001200000813', 'EBANKAdapter');
+insert into DEPLOYMENTS(ID, LOCATION, FILEPATH, DEPLOYDATE, DESCRIPTION, NAME, FILECONTENT, USERNAME, VERSION) VALUES('1534210086614', 'local_out', null, '2018-08-14 09:28:06', null, '2001200000813', null, null, '0');
+exit;
+2018/8/14 9:38:19--->在[ESBDATA/esbdata@159.1.33.210:1521/esbprd]开始执行导出脚本 SQLScript\2001200000813.sql
+2018/8/14 9:38:19--->拼接更新适配器语句开始...................
+
+UPDATE SERVICESYSTEMMAP SET ADAPTER = '2001200000813Adapter' WHERE SERVICEID = '2001200000813';
+UPDATE BINDMAP SET PROTOCOLID = '2001200000813Adapter' WHERE SERVICEID = '2001200000813';
+
+2018/8/14 9:38:19--->拼接更新适配器语句结束...................
+
+2018/8/14 9:38:19--->执行结果：
+2018/8/14 9:38:19-----------------------------------------------------------
+
+SQL*Plus: Release 11.2.0.1.0 Production on Tue Aug 14 09:38:19 2018
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+2018/8/14 9:38:19-----------------------------------------------------------
+2018/8/14 9:38:19--->导出脚本执行结束 SQLScript\2001200000813.sql
+2018/8/14 9:38:19--->在[ESBDATA/esbdata@159.1.39.130:1521/esbprd]开始执行导出脚本 SQLScript\2001200000813.sql
+2018/8/14 9:38:20--->执行结果：
+2018/8/14 9:38:20-----------------------------------------------------------
+
+SQL*Plus: Release 11.2.0.1.0 Production on Tue Aug 14 09:38:20 2018
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+2018/8/14 9:38:20-----------------------------------------------------------
+2018/8/14 9:38:20--->导出脚本执行结束 SQLScript\2001200000813.sql
+2018/8/14 9:38:20--->准备导出配置文件
+2018/8/14 9:38:20--->查询导出配置文件所需参数
+2018/8/14 9:38:20--->查询导出配置文件所需参数如下:
+2018/8/14 9:38:20--->
+SQL*Plus: Release 11.2.0.1.0 Production on Tue Aug 14 09:38:20 2018
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+old  12:		       WHERE	   A.SERVICE_ID = '&1'
+new  12:		       WHERE	   A.SERVICE_ID = '20012000008'
+old  13:			       AND A.OPERATION_ID = '&2'
+new  13:			       AND A.OPERATION_ID = '13'
+old  14:			       AND UPPER (C.SYSTEM_AB) = UPPER ('&4'))
+new  14:			       AND UPPER (C.SYSTEM_AB) = UPPER ('EBANK'))
+old  19:			      AND N.SYSTEM_CHINESE_NAME LIKE '%&3%')
+new  19:			      AND N.SYSTEM_CHINESE_NAME LIKE '%业务集成平台%')
+old  31:			      AND N.SYSTEM_CHINESE_NAME LIKE '%&3%')
+new  31:			      AND N.SYSTEM_CHINESE_NAME LIKE '%业务集成平台%')
+old  52:				   WHERE   A.SYSTEM_AB = '&4'),
+new  52:				   WHERE   A.SYSTEM_AB = 'EBANK'),
+
+CONSUMER_INVOKE_ID
+--------------------------------------------------------------------------------
+CONSUMER_PROTOCOL_ID
+--------------------------------------------------------------------------------
+PROVIDER_INVOKE_ID
+--------------------------------------------------------------------------------
+PROVIDER_PROTOCOL_ID
+--------------------------------------------------------------------------------
+1f81c115635c53c901653221737423c1
+1
+1f81c115635c53c9016513b2dbd0115e
+b5b8eecd-eb31-4aaf-9d8b-33b31a249bbf
+
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+2018/8/14 9:38:20--->开始导出[2001200000813]配置文件
+2018/8/14 9:38:25--->导出[2001200000813]配置文件完成
+2018/8/14 9:38:26--->开始修改公共文件
+2018/8/14 9:38:26--->开始查询[业务集成平台]对应的简称
+2018/8/14 9:38:26--->字典中已缓存，直接取缓存
+2018/8/14 9:38:26--->[业务集成平台]===>[BIP]
+2018/8/14 9:38:26--->查询[业务集成平台]对应的简称结束
+2018/8/14 9:38:26--->开始修改[Tmp\serviceIdentify.xml]文件
+2018/8/14 9:38:26---> 在注释处插入该交易 BIP --> 2001200000813 --> EBANK
+2018/8/14 9:38:26--->修改[Tmp\serviceIdentify.xml]文件结束
+2018/8/14 9:38:26--->开始修改[Tmp\systemIdentify.xml]文件
+2018/8/14 9:38:26BIP --> 2001200000813 --> EBANK
+2018/8/14 9:38:26--->修改[Tmp\systemIdentify.xml]文件结束
+2018/8/14 9:38:26--->修改公共文件结束
+2018/8/14 9:38:26--->开始比较[2001200000813]与元数据的差异
+2018/8/14 9:38:26--->完成比较[2001200000813]与元数据的差异
+2018/8/14 9:38:26--->开始拷贝文件至SVN[2001200000813]
+2018/8/14 9:38:26--->开始拷贝文件夹-->[C:\Users\srxhx255\Desktop\交易制作工具\Metadata\2001200000813-metadata\in_config\BIP]
+2018/8/14 9:38:26--->开始拷贝文件夹-->[C:\Users\srxhx255\Desktop\交易制作工具\Metadata\2001200000813-metadata\in_config\servicedefine]
+2018/8/14 9:38:26--->开始拷贝文件夹-->[C:\Users\srxhx255\Desktop\交易制作工具\Metadata\2001200000813-metadata\out_config\]
+2018/8/14 9:38:26--->开始修改拆组包文件[2001200000813]
+2018/8/14 9:38:26--->没有模版文件[2001200000813]
+2018/8/14 9:38:26--->开始查看[3006300002619]是否是全新交易
+2018/8/14 9:38:26--->查询结果如下:
+2018/8/14 9:38:26--->
+SQL*Plus: Release 11.2.0.1.0 Production on Tue Aug 14 09:38:26 2018
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+old   3:  WHERE   SERVICEID = '&1'
+new   3:  WHERE   SERVICEID = '3006300002619'
+
+no rows selected
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+2018/8/14 9:38:26--->交易[3006300002619]为全新交易!!!
+2018/8/14 9:38:26--->字典中未缓存，需要查库
+2018/8/14 9:38:27--->查看[3006300002619]是否是全新交易结束
+2018/8/14 9:38:27--->开始导出[3006300002619]SQL脚本
+2018/8/14 9:38:27--->导出[3006300002619]SQL脚本完成
+2018/8/14 9:38:27--->导出内容如下：
+2018/8/14 9:38:27---> 
+----------3006300002619
+insert into SERVICES(NAME, INADDRESSID, OUTADDRESSID, TYPE, SESSIONCOUNT, DELIVERYMODE, NODEID, LOCATION, ROUTERABLE) VALUES('3006300002619', '4cc95abd8b9cba4705f290b39dee3d6a', '70022232c41f240289cac75d5b3e3884', 'SERVICE', 1, '2', null , 'local_out', '1');
+insert into BUSSSERVICES(SERVICEID, CATEGORY, METHODNAME, ISARG, DESCRIPTION) VALUES('3006300002619', null, null, 'false', null);
+insert into SERVICEINFO(SERVICEID, SERVICETYPE, CONTRIBUTION, PREPARED, GROUPNAME, LOCATION, DESCRIPTION, MODIFYTIME, ADAPTERTYPE, ISCREATE) VALUES('3006300002619', 'BUSS', '3006300002619', 'false', null, 'local_out', null, '2018-08-14 09:28:14', null, 'true');
+insert into BINDMAP(SERVICEID, STYPE, LOCATION, VERSION, PROTOCOLID, MAPTYPE) VALUES('3006300002619', 'SERVICE', 'local_out', '0', 'BIBPSAdapter', 'request');
+insert into DATAADAPTER(DATAADAPTERID, DATAADAPTER, LOCATION, ADAPTERTYPE) VALUES('3006300002619', 'default_service', 'local_out', 'OUT');
+insert into SERVICESYSTEMMAP(NAME, SERVICEID, ADAPTER) VALUES('BIBPS', '3006300002619', 'BIBPSAdapter');
+insert into DEPLOYMENTS(ID, LOCATION, FILEPATH, DEPLOYDATE, DESCRIPTION, NAME, FILECONTENT, USERNAME, VERSION) VALUES('1534210094243', 'local_out', null, '2018-08-14 09:28:14', null, '3006300002619', null, null, '0');
+commit;
+----------3006300002619
+insert into SERVICES(NAME, INADDRESSID, OUTADDRESSID, TYPE, SESSIONCOUNT, DELIVERYMODE, NODEID, LOCATION, ROUTERABLE) VALUES('3006300002619', '4cc95abd8b9cba4705f290b39dee3d6a', '70022232c41f240289cac75d5b3e3884', 'SERVICE', 1, '2', null , 'local_out', '1');
+insert into BUSSSERVICES(SERVICEID, CATEGORY, METHODNAME, ISARG, DESCRIPTION) VALUES('3006300002619', null, null, 'false', null);
+insert into SERVICEINFO(SERVICEID, SERVICETYPE, CONTRIBUTION, PREPARED, GROUPNAME, LOCATION, DESCRIPTION, MODIFYTIME, ADAPTERTYPE, ISCREATE) VALUES('3006300002619', 'BUSS', '3006300002619', 'false', null, 'local_out', null, '2018-08-14 09:28:14', null, 'true');
+insert into BINDMAP(SERVICEID, STYPE, LOCATION, VERSION, PROTOCOLID, MAPTYPE) VALUES('3006300002619', 'SERVICE', 'local_out', '0', 'BIBPSAdapter', 'request');
+insert into DATAADAPTER(DATAADAPTERID, DATAADAPTER, LOCATION, ADAPTERTYPE) VALUES('3006300002619', 'default_service', 'local_out', 'OUT');
+insert into SERVICESYSTEMMAP(NAME, SERVICEID, ADAPTER) VALUES('BIBPS', '3006300002619', 'BIBPSAdapter');
+insert into DEPLOYMENTS(ID, LOCATION, FILEPATH, DEPLOYDATE, DESCRIPTION, NAME, FILECONTENT, USERNAME, VERSION) VALUES('1534210094243', 'local_out', null, '2018-08-14 09:28:14', null, '3006300002619', null, null, '0');
+exit;
+2018/8/14 9:38:27--->在[ESBDATA/esbdata@159.1.33.210:1521/esbprd]开始执行导出脚本 SQLScript\3006300002619.sql
+2018/8/14 9:38:27 Error->执行[3006300002619]存在错误，请查看日志......
+2018/8/14 9:38:27--->拼接更新适配器语句开始...................
+
+insert into BINDMAP(SERVICEID, STYPE, LOCATION, VERSION, PROTOCOLID, MAPTYPE) VALUES('3006300002619', 'SERVICE', 'local_out', '0', '3006300002619Adapter', 'request');
+UPDATE SERVICESYSTEMMAP SET ADAPTER = '3006300002619Adapter' WHERE SERVICEID = '3006300002619';
+UPDATE BINDMAP SET PROTOCOLID = '3006300002619Adapter' WHERE SERVICEID = '3006300002619';
+
+2018/8/14 9:38:27--->拼接更新适配器语句结束...................
+
+2018/8/14 9:38:27--->执行结果：
+2018/8/14 9:38:27-----------------------------------------------------------
+
+SQL*Plus: Release 11.2.0.1.0 Production on Tue Aug 14 09:38:27 2018
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+insert into BINDMAP(SERVICEID, STYPE, LOCATION, VERSION, PROTOCOLID, MAPTYPE) VALUES('3006300002619', 'SERVICE', 'local_out', '0', 'BIBPSAdapter', 'request')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (ESBDATA.BIND_PROTOCOLID_REF) violated - parent
+key not found
+
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+2018/8/14 9:38:27-----------------------------------------------------------
+2018/8/14 9:38:27--->导出脚本执行结束 SQLScript\3006300002619.sql
+2018/8/14 9:38:27--->在[ESBDATA/esbdata@159.1.39.130:1521/esbprd]开始执行导出脚本 SQLScript\3006300002619.sql
+2018/8/14 9:38:27 Error->执行[3006300002619]存在错误，请查看日志......
+2018/8/14 9:38:27--->执行结果：
+2018/8/14 9:38:27-----------------------------------------------------------
+
+SQL*Plus: Release 11.2.0.1.0 Production on Tue Aug 14 09:38:27 2018
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+insert into BINDMAP(SERVICEID, STYPE, LOCATION, VERSION, PROTOCOLID, MAPTYPE) VALUES('3006300002619', 'SERVICE', 'local_out', '0', 'BIBPSAdapter', 'request')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (ESBDATA.BIND_PROTOCOLID_REF) violated - parent
+key not found
+
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+2018/8/14 9:38:27-----------------------------------------------------------
+2018/8/14 9:38:27--->导出脚本执行结束 SQLScript\3006300002619.sql
+2018/8/14 9:38:27--->准备导出配置文件
+2018/8/14 9:38:27--->查询导出配置文件所需参数
+2018/8/14 9:38:28--->查询导出配置文件所需参数如下:
+2018/8/14 9:38:28--->
+SQL*Plus: Release 11.2.0.1.0 Production on Tue Aug 14 09:38:28 2018
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+old  12:		       WHERE	   A.SERVICE_ID = '&1'
+new  12:		       WHERE	   A.SERVICE_ID = '30063000026'
+old  13:			       AND A.OPERATION_ID = '&2'
+new  13:			       AND A.OPERATION_ID = '19'
+old  14:			       AND UPPER (C.SYSTEM_AB) = UPPER ('&4'))
+new  14:			       AND UPPER (C.SYSTEM_AB) = UPPER ('BIBPS'))
+old  19:			      AND N.SYSTEM_CHINESE_NAME LIKE '%&3%')
+new  19:			      AND N.SYSTEM_CHINESE_NAME LIKE '%前端整合系统%')
+old  31:			      AND N.SYSTEM_CHINESE_NAME LIKE '%&3%')
+new  31:			      AND N.SYSTEM_CHINESE_NAME LIKE '%前端整合系统%')
+old  52:				   WHERE   A.SYSTEM_AB = '&4'),
+new  52:				   WHERE   A.SYSTEM_AB = 'BIBPS'),
+
+CONSUMER_INVOKE_ID
+--------------------------------------------------------------------------------
+CONSUMER_PROTOCOL_ID
+--------------------------------------------------------------------------------
+PROVIDER_INVOKE_ID
+--------------------------------------------------------------------------------
+PROVIDER_PROTOCOL_ID
+--------------------------------------------------------------------------------
+1f81c115635c53c901653221739f23c3
+1
+1f81c115635c53c90165229eadf12278
+0
+
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+2018/8/14 9:38:28--->开始导出[3006300002619]配置文件
+2018/8/14 9:38:30--->导出[3006300002619]配置文件完成
+2018/8/14 9:38:31--->开始修改公共文件
+2018/8/14 9:38:31--->开始查询[前端整合系统]对应的简称
+2018/8/14 9:38:31--->字典中已缓存，直接取缓存
+2018/8/14 9:38:31--->[前端整合系统]===>[FIS]
+2018/8/14 9:38:31--->查询[前端整合系统]对应的简称结束
+2018/8/14 9:38:31--->开始修改[Tmp\serviceIdentify.xml]文件
+2018/8/14 9:38:31---> 在注释处插入该交易 FIS --> 3006300002619 --> BIBPS
+2018/8/14 9:38:31--->修改[Tmp\serviceIdentify.xml]文件结束
+2018/8/14 9:38:31--->开始修改[Tmp\systemIdentify.xml]文件
+2018/8/14 9:38:31FIS --> 3006300002619 --> BIBPS
+2018/8/14 9:38:31--->修改[Tmp\systemIdentify.xml]文件结束
+2018/8/14 9:38:31--->修改公共文件结束
+2018/8/14 9:38:31--->开始比较[3006300002619]与元数据的差异
+2018/8/14 9:38:31--->开始添加[CRZLX]元数据,类型为[string]
+2018/8/14 9:38:31--->完成比较[3006300002619]与元数据的差异
+2018/8/14 9:38:31--->开始拷贝文件至SVN[3006300002619]
+2018/8/14 9:38:31--->开始拷贝文件夹-->[C:\Users\srxhx255\Desktop\交易制作工具\Metadata\3006300002619-metadata\in_config\FIS]
+2018/8/14 9:38:31--->开始拷贝文件夹-->[C:\Users\srxhx255\Desktop\交易制作工具\Metadata\3006300002619-metadata\in_config\servicedefine]
+2018/8/14 9:38:31--->开始拷贝文件夹-->[C:\Users\srxhx255\Desktop\交易制作工具\Metadata\3006300002619-metadata\out_config\]
+2018/8/14 9:38:31--->开始修改拆组包文件[3006300002619]
+2018/8/14 9:38:31--->没有模版文件[3006300002619]
+2018/8/14 9:38:31--->开始查看[3006400000434]是否是全新交易
+2018/8/14 9:38:31--->查询结果如下:
+2018/8/14 9:38:31--->
+SQL*Plus: Release 11.2.0.1.0 Production on Tue Aug 14 09:38:31 2018
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+old   3:  WHERE   SERVICEID = '&1'
+new   3:  WHERE   SERVICEID = '3006400000434'
+
+no rows selected
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+2018/8/14 9:38:31--->交易[3006400000434]为全新交易!!!
+2018/8/14 9:38:31--->字典中已缓存，直接取缓存
+2018/8/14 9:38:31--->查看[3006400000434]是否是全新交易结束
+2018/8/14 9:38:31--->开始导出[3006400000434]SQL脚本
+2018/8/14 9:38:31--->导出[3006400000434]SQL脚本完成
+2018/8/14 9:38:31--->导出内容如下：
+2018/8/14 9:38:31---> 
+----------3006400000434
+insert into SERVICES(NAME, INADDRESSID, OUTADDRESSID, TYPE, SESSIONCOUNT, DELIVERYMODE, NODEID, LOCATION, ROUTERABLE) VALUES('3006400000434', '4cc95abd8b9cba4705f290b39dee3d6a', '70022232c41f240289cac75d5b3e3884', 'SERVICE', 1, '2', null , 'local_out', '1');
+insert into BUSSSERVICES(SERVICEID, CATEGORY, METHODNAME, ISARG, DESCRIPTION) VALUES('3006400000434', null, null, 'false', null);
+insert into SERVICEINFO(SERVICEID, SERVICETYPE, CONTRIBUTION, PREPARED, GROUPNAME, LOCATION, DESCRIPTION, MODIFYTIME, ADAPTERTYPE, ISCREATE) VALUES('3006400000434', 'BUSS', '3006400000434', 'false', null, 'local_out', null, '2018-08-14 09:28:18', null, 'true');
+insert into BINDMAP(SERVICEID, STYPE, LOCATION, VERSION, PROTOCOLID, MAPTYPE) VALUES('3006400000434', 'SERVICE', 'local_out', '0', 'BIBPSAdapter', 'request');
+insert into DATAADAPTER(DATAADAPTERID, DATAADAPTER, LOCATION, ADAPTERTYPE) VALUES('3006400000434', 'default_service', 'local_out', 'OUT');
+insert into SERVICESYSTEMMAP(NAME, SERVICEID, ADAPTER) VALUES('BIBPS', '3006400000434', 'BIBPSAdapter');
+insert into DEPLOYMENTS(ID, LOCATION, FILEPATH, DEPLOYDATE, DESCRIPTION, NAME, FILECONTENT, USERNAME, VERSION) VALUES('1534210099004', 'local_out', null, '2018-08-14 09:28:19', null, '3006400000434', null, null, '0');
+commit;
+----------3006400000434
+insert into SERVICES(NAME, INADDRESSID, OUTADDRESSID, TYPE, SESSIONCOUNT, DELIVERYMODE, NODEID, LOCATION, ROUTERABLE) VALUES('3006400000434', '4cc95abd8b9cba4705f290b39dee3d6a', '70022232c41f240289cac75d5b3e3884', 'SERVICE', 1, '2', null , 'local_out', '1');
+insert into BUSSSERVICES(SERVICEID, CATEGORY, METHODNAME, ISARG, DESCRIPTION) VALUES('3006400000434', null, null, 'false', null);
+insert into SERVICEINFO(SERVICEID, SERVICETYPE, CONTRIBUTION, PREPARED, GROUPNAME, LOCATION, DESCRIPTION, MODIFYTIME, ADAPTERTYPE, ISCREATE) VALUES('3006400000434', 'BUSS', '3006400000434', 'false', null, 'local_out', null, '2018-08-14 09:28:18', null, 'true');
+insert into BINDMAP(SERVICEID, STYPE, LOCATION, VERSION, PROTOCOLID, MAPTYPE) VALUES('3006400000434', 'SERVICE', 'local_out', '0', 'BIBPSAdapter', 'request');
+insert into DATAADAPTER(DATAADAPTERID, DATAADAPTER, LOCATION, ADAPTERTYPE) VALUES('3006400000434', 'default_service', 'local_out', 'OUT');
+insert into SERVICESYSTEMMAP(NAME, SERVICEID, ADAPTER) VALUES('BIBPS', '3006400000434', 'BIBPSAdapter');
+insert into DEPLOYMENTS(ID, LOCATION, FILEPATH, DEPLOYDATE, DESCRIPTION, NAME, FILECONTENT, USERNAME, VERSION) VALUES('1534210099004', 'local_out', null, '2018-08-14 09:28:19', null, '3006400000434', null, null, '0');
+exit;
+2018/8/14 9:38:31--->在[ESBDATA/esbdata@159.1.33.210:1521/esbprd]开始执行导出脚本 SQLScript\3006400000434.sql
+2018/8/14 9:38:32 Error->执行[3006400000434]存在错误，请查看日志......
+2018/8/14 9:38:32--->拼接更新适配器语句开始...................
+
+insert into BINDMAP(SERVICEID, STYPE, LOCATION, VERSION, PROTOCOLID, MAPTYPE) VALUES('3006400000434', 'SERVICE', 'local_out', '0', '3006400000434Adapter', 'request');
+UPDATE SERVICESYSTEMMAP SET ADAPTER = '3006400000434Adapter' WHERE SERVICEID = '3006400000434';
+UPDATE BINDMAP SET PROTOCOLID = '3006400000434Adapter' WHERE SERVICEID = '3006400000434';
+
+2018/8/14 9:38:32--->拼接更新适配器语句结束...................
+
+2018/8/14 9:38:32--->执行结果：
+2018/8/14 9:38:32-----------------------------------------------------------
+
+SQL*Plus: Release 11.2.0.1.0 Production on Tue Aug 14 09:38:32 2018
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+insert into BINDMAP(SERVICEID, STYPE, LOCATION, VERSION, PROTOCOLID, MAPTYPE) VALUES('3006400000434', 'SERVICE', 'local_out', '0', 'BIBPSAdapter', 'request')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (ESBDATA.BIND_PROTOCOLID_REF) violated - parent
+key not found
+
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+2018/8/14 9:38:32-----------------------------------------------------------
+2018/8/14 9:38:32--->导出脚本执行结束 SQLScript\3006400000434.sql
+2018/8/14 9:38:32--->在[ESBDATA/esbdata@159.1.39.130:1521/esbprd]开始执行导出脚本 SQLScript\3006400000434.sql
+2018/8/14 9:38:32 Error->执行[3006400000434]存在错误，请查看日志......
+2018/8/14 9:38:32--->执行结果：
+2018/8/14 9:38:32-----------------------------------------------------------
+
+SQL*Plus: Release 11.2.0.1.0 Production on Tue Aug 14 09:38:32 2018
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+insert into BINDMAP(SERVICEID, STYPE, LOCATION, VERSION, PROTOCOLID, MAPTYPE) VALUES('3006400000434', 'SERVICE', 'local_out', '0', 'BIBPSAdapter', 'request')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (ESBDATA.BIND_PROTOCOLID_REF) violated - parent
+key not found
+
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+2018/8/14 9:38:32-----------------------------------------------------------
+2018/8/14 9:38:32--->导出脚本执行结束 SQLScript\3006400000434.sql
+2018/8/14 9:38:32--->准备导出配置文件
+2018/8/14 9:38:32--->查询导出配置文件所需参数
+2018/8/14 9:38:33--->查询导出配置文件所需参数如下:
+2018/8/14 9:38:33--->
+SQL*Plus: Release 11.2.0.1.0 Production on Tue Aug 14 09:38:32 2018
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+old  12:		       WHERE	   A.SERVICE_ID = '&1'
+new  12:		       WHERE	   A.SERVICE_ID = '30064000004'
+old  13:			       AND A.OPERATION_ID = '&2'
+new  13:			       AND A.OPERATION_ID = '34'
+old  14:			       AND UPPER (C.SYSTEM_AB) = UPPER ('&4'))
+new  14:			       AND UPPER (C.SYSTEM_AB) = UPPER ('BIBPS'))
+old  19:			      AND N.SYSTEM_CHINESE_NAME LIKE '%&3%')
+new  19:			      AND N.SYSTEM_CHINESE_NAME LIKE '%前端整合系统%')
+old  31:			      AND N.SYSTEM_CHINESE_NAME LIKE '%&3%')
+new  31:			      AND N.SYSTEM_CHINESE_NAME LIKE '%前端整合系统%')
+old  52:				   WHERE   A.SYSTEM_AB = '&4'),
+new  52:				   WHERE   A.SYSTEM_AB = 'BIBPS'),
+
+CONSUMER_INVOKE_ID
+--------------------------------------------------------------------------------
+CONSUMER_PROTOCOL_ID
+--------------------------------------------------------------------------------
+PROVIDER_INVOKE_ID
+--------------------------------------------------------------------------------
+PROVIDER_PROTOCOL_ID
+--------------------------------------------------------------------------------
+1f81c115635c53c90165322173c523c5
+1
+1f81c115635c53c90165229ead59226d
+0
+
+
+Disconnected from Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+2018/8/14 9:38:33--->开始导出[3006400000434]配置文件
+2018/8/14 9:38:35--->导出[3006400000434]配置文件完成
+2018/8/14 9:38:35--->开始修改公共文件
+2018/8/14 9:38:35--->开始查询[前端整合系统]对应的简称
+2018/8/14 9:38:35--->字典中已缓存，直接取缓存
+2018/8/14 9:38:35--->[前端整合系统]===>[FIS]
+2018/8/14 9:38:35--->查询[前端整合系统]对应的简称结束
+2018/8/14 9:38:35--->开始修改[Tmp\serviceIdentify.xml]文件
+2018/8/14 9:38:36---> 在注释处插入该交易 FIS --> 3006400000434 --> BIBPS
+2018/8/14 9:38:36--->修改[Tmp\serviceIdentify.xml]文件结束
+2018/8/14 9:38:36--->开始修改[Tmp\systemIdentify.xml]文件
+2018/8/14 9:38:36FIS --> 3006400000434 --> BIBPS
+2018/8/14 9:38:36--->修改[Tmp\systemIdentify.xml]文件结束
+2018/8/14 9:38:36--->修改公共文件结束
+2018/8/14 9:38:36--->开始比较[3006400000434]与元数据的差异
+2018/8/14 9:38:36--->完成比较[3006400000434]与元数据的差异
+2018/8/14 9:38:36--->开始拷贝文件至SVN[3006400000434]
+2018/8/14 9:38:36--->开始拷贝文件夹-->[C:\Users\srxhx255\Desktop\交易制作工具\Metadata\3006400000434-metadata\in_config\FIS]
+2018/8/14 9:38:36--->开始拷贝文件夹-->[C:\Users\srxhx255\Desktop\交易制作工具\Metadata\3006400000434-metadata\in_config\servicedefine]
+2018/8/14 9:38:36--->开始拷贝文件夹-->[C:\Users\srxhx255\Desktop\交易制作工具\Metadata\3006400000434-metadata\out_config\]
+2018/8/14 9:38:36--->开始修改拆组包文件[3006400000434]
+2018/8/14 9:38:36--->没有模版文件[3006400000434]
+2018/8/14 9:38:36--->开始添加元数据的差异
+2018/8/14 9:38:36--->内容如下
+2018/8/14 9:38:36--->
+	<CRZLX type="string" length="255"/>
+
+2018/8/14 9:38:36--->完成添加元数据的差异
+2018/8/14 9:38:36--->配置文件共[24]个
