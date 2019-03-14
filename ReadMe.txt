@@ -28,9 +28,9 @@
         CheckTran.sql                   --->   检查交易是否为存量脚本
         GetInfo.sql                     --->   获得下载Metadata的参数
         GetName.sql                     --->   获得系统名对应的简称
-		AddChannel.sql			--->   添加新增渠道
-		AddSystem.sql			--->   添加新增系统方
-		GetCHName.sql			--->   获得中文描述
+	AddChannel.sql			--->   添加新增渠道
+	AddSystem.sql			--->   添加新增系统方
+	GetCHName.sql			--->   获得中文描述
 
 ================================功能介绍================================
 	这个小工具目的是减轻开发人员的工作，提高开发效率，将一些重复性的
